@@ -55,3 +55,37 @@ console.log(str); // string
 ```
 
 이미 생성된 문자열의 일부 문자를 변경해도 반영되지 않음
+
+## 값에 의한 전달
+
+```jsx
+var score = 90;
+var copy = score;
+
+console.log(score); //90
+console.log(copy); //90
+
+score = 100;
+
+console.log(score); //100
+console.log(copy); //90
+```
+
+변수에 원시 값을 갖는 변수를 할당하면 할당받는 변수(copy)에는 할당되는 변수(score)의 원시 값이 복사되어 전달됨. 이를 `값에 의한 전달` 이라고 함
+
+`copy` 변수에 원시 값을 갖는 `score` 변수를 할당하면, `copy` 에는 `score` 의 원시 값 90이 복사되어 전달 됨
+
+```jsx
+var score = 90;
+var copy = score;
+
+console.log(score, copy); // 90 90
+console.log(score === copy); //true
+
+score = 100;
+
+console.log(score, copy); // 100 90
+console.log(score === copy); //false
+```
+
+`score` 변수와 `copy` 변수가 숫자 90의 값을 갖는다는 점에서는 동일하나 `**score` 변수와 `copy` 변수의 값 90은 서로 다른 메모리 공간에 저장된 별개의 값**

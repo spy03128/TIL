@@ -152,3 +152,36 @@ let foo = 1; //전역 변수
 `let` 키워드로 선언한 변수의 경우 변수 호이스팅이 발생하지 않는다면 위 예제는 전역 변수 `foo` 값을 출력해야하지만 `let` 키워드로 선언한 변수도 여전히 호이스팅이 발생하기때문에 참조에러가 발생함
 
 자바스크립트 ES6에서는 모든 선언을 호이스팅함. 다만 `let` , `const` , `class` 를 사용한 선언문은 호이스팅이 발생하지 않는것처럼 동작함
+
+### 전역 객체와 let
+
+`var` 키워드로 선언한 전역 변수와 전역 함수, 그리고 선언하지 않은 변수에 값을 할당한 암묵적 전역은 전역 객체 `window` 의 프로퍼티가 됨. 전역 객체의 프로퍼티를 참조할 때 `window` 를 생략할 수 있음
+
+```jsx
+//전역 변수
+var x = 1;
+//암묵적 전역
+y = 2;
+//전역 함수
+function foo() {}
+
+console.log(window.x); //1
+console.log(x); //1
+
+console.log(window.y); //2
+console.log(y); //2
+
+console.log(window.foo); //f foo() {}
+console.log(foo); //f foo() {}
+```
+
+`let` 키워드로 선언한 전역 변수는 전역 객체의 프로퍼티가 아님. 즉, `[window.foo](http://window.foo)` 와 같이 접근할 수 없음.
+
+`let` 전역 변수는 보이지 않는 개념적인 블록(전역 레시컬 환경의 선언적 환경 레코드)내에 존재하게 됨.
+
+```jsx
+let x = 1;
+
+console.log(window.x); //undefined
+console.log(x); //1
+```

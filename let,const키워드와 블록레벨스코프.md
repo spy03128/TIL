@@ -185,3 +185,35 @@ let x = 1;
 console.log(window.x); //undefined
 console.log(x); //1
 ```
+
+## const 키워드
+
+`const` 키워드는 상수를 선언하기 위해 사용
+
+하지만 반드시 상수만을 위해 사용하지는 않음. `const` 키워드의 대부분 특징은 `let` 키워드와 유사
+
+### 1. 선언과 초기화
+
+`const` 키워드로 선언한 변수는 반드시 선언과 동시에 초기화해야함
+
+```jsx
+const foo = 1;
+```
+
+그렇지 않으면 문법 에러가 발생
+
+```jsx
+const foo; //SyntaxError
+```
+
+`const` 키워드로 선언한 변수는 `let` 키워드로 선언한 변수와 마찬가지로 블록 레벨 스코프를 가지며, 변수 호이스팅이 발생하지 않는 것처럼 동작함
+
+```jsx
+{
+  console.log(foo); //ReferenceError
+  const foo = 1;
+  console.log(foo); //1
+}
+
+console.log(foo); //ReferenceError
+```

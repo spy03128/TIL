@@ -217,3 +217,12 @@ const foo; //SyntaxError
 
 console.log(foo); //ReferenceError
 ```
+
+### 2. 재할당 금지
+
+`var` 또는 `let` 키워드로 선언한 변수는 재할당이 자유로우나 `const` 키워드로 선언한 변수는 재할당이 금지됨
+
+```jsx
+const foo = 1;
+foo = 2; //TypeError
+```

@@ -62,6 +62,32 @@ print(sum)
 ```python
 from collections import deque
 
+dx = [-1,0,1,0]
+dy = [0,1,0,-1]
+
+arr = [list(map(int,input().split())) for _ in range(7)]
+check = [[0]*7 for _ in range(7)]
+Q = deque()
+Q.append((0,0))
+check[0][0] = 1
+
+while Q:
+    now = Q.popleft()
+    for i in range(4):
+        x = now[0] + dx[i]
+        y = now[1] + dy[i]
+        if 0<=x<=6 and 0<=y<=6 and check[x][y]==0 and arr[x][y]==0:
+            Q.append((x,y))
+            check[x][y]=check[now[0]][now[1]]+1
+if check[6][6]==0:
+    print(-1)
+else:
+    print(check[6][6]-1)
+```
+
+```python
+from collections import deque
+
 dx = [-1, 0, 1, 0]
 dy = [0, 1, 0, -1]
 
@@ -83,4 +109,80 @@ if dis[6][6]==0:
     print(-1)
 else:
     print(dis[6][6])
+```
+
+### 섬나라 아일랜드
+
+```python
+from collections import deque
+
+def BFS(i,j):
+    while Q:
+        now = Q.popleft()
+        for i in range(8):
+            x = now[0]+dx[i]
+            y = now[1]+dy[i]
+            if 0<=x<n and 0<=y<n and check[x][y]==0 and arr[x][y]==1:
+                Q.append((x,y))
+                check[x][y]=1
+
+dx = [-1,-1,0,1,1,1,0,-1]
+dy = [0,1,1,1,0,-1,-1,-1,0]
+n = int(input())
+arr = [list(map(int,input().split())) for _ in range(n)]
+check = [[0]*n for _ in range(n)]
+Q = deque()
+cnt=0
+for i in range(n):
+    for j in range(n):
+        if arr[i][j]==1 and check[i][j]==0:
+            Q.append((i,j))
+            check[i][j]==1
+            BFS(i,j)
+            cnt+=1
+
+print(cnt)
+```
+
+### 토마토
+
+```python
+from collections import deque
+
+def BFS():
+    while Q:
+        now = Q.popleft()
+        for i in range(4):
+            x = now[0]+dx[i]
+            y = now[1]+dy[i]
+            if 0<=x<n and 0<=y<m and arr[x][y]==0:
+                check[x][y]=check[now[0]][now[1]]+1
+                arr[x][y]=1
+                Q.append((x,y))
+
+dx = [-1,0,1,0]
+dy = [0,1,0,-1]
+
+m,n = map(int,input().split())
+arr = [list(map(int,input().split())) for _ in range(n)]
+check = [[0]*m for _ in range(n)]
+Q = deque()
+for i in range(n):
+    for j in range(m):
+        if arr[i][j]==1:
+            Q.append((i,j))
+BFS()
+ch = False
+for i in range(n):
+    if ch:
+        break
+    for j in range(m):
+        if arr[i][j]==0:
+          ch = True
+          break
+
+if ch:
+    print(-1)
+else:
+    print(max([max(x) for x in check]))
 ```

@@ -186,3 +186,59 @@ if ch:
 else:
     print(max([max(x) for x in check]))
 ```
+
+
+---
+
+### 최대점수 구하기
+
+```python
+def DFS(L, t, s):
+    global result
+    if t > m:
+        return
+    if L==n:
+        result=max(result,s)
+    else:
+        DFS(L+1, t+time[L], s+score[L])
+        DFS(L+1, t,s)
+
+n,m = map(int,input().split())
+score = list()
+time= list()
+
+for _ in range(n):
+    x,y = map(int,input().split())
+    score.append(x)
+    time.append(y)
+result = 0
+DFS(0,0,0)
+print(result)
+```
+
+### 휴가 (삼성 SW역량평가 기출문제)
+
+```python
+def DFS(L,sum):
+    global result
+    if L==n+1:
+        result = max(result, sum)
+    else:
+        if L+time[L] <= n+1:
+            DFS(L + time[L], sum + point[L])
+        DFS(L + 1, sum)
+
+n = int(input())
+time = list()
+point = list()
+result = -100
+for _ in range(n):
+    x,y = map(int,input().split())
+    time.append(x)
+    point.append(y)
+time.insert(0,0)
+point.insert(0,0)
+
+DFS(1, 0)
+print(result)
+```

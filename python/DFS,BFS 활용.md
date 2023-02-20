@@ -269,6 +269,8 @@ print(s-len(res))
 ```python
 def DFS(L, sum):
     global res
+    if sum>t:
+        return
     if L==k:
         if sum==t:
             res+=1
@@ -288,5 +290,35 @@ for i in range(k):
 res = 0
 DFS(0,0)
 
+print(res)
+```
+
+### 동전 분배하기
+
+```python
+def DFS(L):
+    global res
+    if L == n:
+        ch = max(person) - min(person)
+        if ch<res:
+            tmp = set()
+            for x in person:
+                tmp.add(x)
+            if len(tmp)==3:
+                res = min(res,ch)
+
+        return
+    for i in range(3):
+        person[i] += money[L]
+        DFS(L+1)
+        person[i] -= money[L]
+
+n = int(input())
+money = []
+for i in range(n):
+    money.append(int(input()))
+person = [0]*3
+res = float('inf')
+DFS(0)
 print(res)
 ```

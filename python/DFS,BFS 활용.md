@@ -241,8 +241,9 @@ point.insert(0,0)
 DFS(1, 0)
 print(result)
 ```
-
 ### 양팔저울
+
+`set` : 중복을 제거하면서 값을 추가할 수 있음
 
 ```python
 def DFS(L, sum):
@@ -261,4 +262,31 @@ s=sum(G)
 res = set()
 DFS(0,0)
 print(s-len(res))
+```
+
+### 동전 바꿔주기
+
+```python
+def DFS(L, sum):
+    global res
+    if L==k:
+        if sum==t:
+            res+=1
+
+    else:
+        for i in range(n[L]+1):
+            DFS(L+1, sum+money[L]*i)
+
+t = int(input())
+k = int(input())
+money = []
+n = []
+for i in range(k):
+    x,y = map(int,input().split())
+    money.append(x)
+    n.append(y)
+res = 0
+DFS(0,0)
+
+print(res)
 ```

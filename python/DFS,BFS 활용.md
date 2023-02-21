@@ -241,6 +241,7 @@ point.insert(0,0)
 DFS(1, 0)
 print(result)
 ```
+
 ### 양팔저울
 
 `set` : 중복을 제거하면서 값을 추가할 수 있음
@@ -321,4 +322,31 @@ person = [0]*3
 res = float('inf')
 DFS(0)
 print(res)
+```
+
+### 알파코드
+
+```python
+def DFS(L, P):
+    global cnt
+    if L==n:
+        cnt+=1
+        for j in range(P):
+            print(res[j], end=" ")
+        print()
+    else:
+        for i in range(1,27):
+            if code[L]==i:
+                res[P]=i
+                DFS(L+1, P+1)
+            elif i>=10 and code[L]==i//10 and code[L+1]==i%10:
+                res[P]=i
+                DFS(L+2, P+1)
+
+code = list(map(int,input()))
+n=len(code)
+res=[0]*(n+3)
+cnt=0
+DFS(0,0)
+print(cnt)
 ```

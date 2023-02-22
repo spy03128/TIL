@@ -323,8 +323,36 @@ res = float('inf')
 DFS(0)
 print(res)
 ```
-
 ### 알파코드
+
+```python
+def DFS(L,p):
+    global cnt
+    if p==n:
+        cnt+=1
+        for x in range(L):
+            print(chr(res[x]+64),end="")
+        print()
+        return
+    for i in range(1,27):
+        if i<10:
+            if i == code[p]:
+                res[L]=i
+                DFS(L+1,p+1)
+        else:
+            if i//10 == code[p] and i%10 == code[p+1]:
+                res[L]=i
+                DFS(L+1,p+2)
+
+code = list(map(int,input()))
+n = len(code)
+code.insert(n,0)
+res = [0]*n
+cnt = 0
+DFS(0,0)
+
+print(cnt)
+```
 
 ```python
 def DFS(L, P):
@@ -345,8 +373,37 @@ def DFS(L, P):
 
 code = list(map(int,input()))
 n=len(code)
+code.insert(n,0)
 res=[0]*(n+3)
 cnt=0
+DFS(0,0)
+print(cnt)
+```
+
+### 미로탐색
+
+```python
+def DFS(i,j):
+    global cnt
+    if i == 6 and j ==6:
+        cnt+=1
+        return
+
+    for d in range(4):
+        x = i + dx[d]
+        y = j + dy[d]
+        if 0<=x<=6 and 0<=y<=6 and arr[x][y]==0 and check[x][y]==0:
+            check[x][y] = 1
+            DFS(x,y)
+            check[x][y] = 0
+
+dx = [-1,0,1,0]
+dy = [0,1,0,-1]
+
+arr = [list(map(int,input().split())) for _ in range(7)]
+check = [[0]*7 for _ in range(7)]
+check[0][0] = 1
+cnt = 0
 DFS(0,0)
 print(cnt)
 ```

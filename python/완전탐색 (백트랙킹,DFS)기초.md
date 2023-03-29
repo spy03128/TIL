@@ -106,6 +106,34 @@ print("NO")
 ### 바둑이 승차
 
 ```python
+import sys
+input = sys.stdin.readline
+
+def DFS(v):
+    global maxim
+    if v==n:
+        wt = 0
+        for i in range(n):
+            if check[i]==1:
+                wt+=arr[i]
+                if wt>c:
+                    return
+        maxim = max(maxim, wt)
+        return 
+    check[v] = 1
+    DFS(v+1)
+    check[v] = 0
+    DFS(v+1)
+
+c , n = map(int, input().split())
+arr = [int(input()) for _ in range(n)]
+check = [0]*n
+maxim = 0
+DFS(0)
+print(maxim)
+```
+
+```python
 def DFS(L, sum,tsum):
     global result
     if sum+(total-tsum)<result:

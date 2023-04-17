@@ -175,3 +175,32 @@ for i in range(1,n+1):
         print(graph[i][j], end=" ")
     print()
 ```
+
+### 경로 탐색(그래프 DFS)
+
+```python
+import sys
+input = sys.stdin.readline
+
+def DFS(L):
+    global cnt
+    if L==n:
+        cnt+=1
+    for i in range(1, n + 1):
+        if check[i]==0 and graph[L][i]==1:
+            check[L]=1
+            DFS(L+1)
+            check[L] = 0
+
+n,m = map(int,input().split())
+graph = [[0]*(n+1) for _ in range(n+1)]
+check = [0]*(n+1)
+
+for i in range(m):
+    a,b = map(int,input().split())
+    graph[a][b] = 1
+cnt=0
+check[1] = 1
+DFS(1)
+print(cnt)
+```

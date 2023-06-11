@@ -1,4 +1,4 @@
-# TIL : Today I Learned
+# 👻 실력있는 개발자가 되기 위한 공부기록
 
 ### JavaScript
 
@@ -44,5 +44,3 @@
   | 다이나믹 프로그래밍 | 1로 만들기, 개미 전사, 바닥 공사, 효율적인 화폐 구성, 정수 삼각형(B_S1_1932번)                                                                                                                        |
 
 ---
-
-### [프론트엔드 CS](https://github.com/spy03128/TIL/tree/master/%ED%94%84%EB%A1%A0%ED%8A%B8%EC%97%94%EB%93%9C%20CS)
